@@ -1,0 +1,5 @@
+export * from '@/components/App/components/buttons'
+export * from '@/components/App/components/divs'
+export * from '@/components/App/components/inputs'
+export * from '@/components/App/components/labels'
+export * from '@/components/App/components/select'
