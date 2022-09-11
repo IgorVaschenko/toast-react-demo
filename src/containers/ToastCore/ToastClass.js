@@ -6,7 +6,7 @@ import {
     INFO,
     SUCCESS,
     WARNING,
-} from '@/constants/';
+} from '@/constants';
 import { toastTypeProps, getGeneralProps, renderToast, getToast } from '@/helpers';
 
 class ToastClass {
@@ -49,6 +49,7 @@ class ToastClass {
     }
 
     addToast(args) {
+
         let timer = [];
         const id = uuidv4()
 

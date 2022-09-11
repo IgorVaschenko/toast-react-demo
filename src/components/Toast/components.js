@@ -3,6 +3,7 @@ import styled from "styled-components";
 import theme from "@/theme/theme";
 
 export const ToastWrapper = styled.div`
+position:fixed;
 
   .top-right {
     top: ${theme.spaces[8]}px;

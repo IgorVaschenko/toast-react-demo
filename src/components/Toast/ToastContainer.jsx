@@ -10,7 +10,6 @@ import {
 } from "@/components/Toast/components";
 
 const ToastContainer = ({ position, PortalInsertionPointId }) => {
-
   return (
     <ErrorBoundary>
       <Portal PortalInsertionPointId={PortalInsertionPointId}>

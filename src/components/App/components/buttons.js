@@ -37,3 +37,21 @@ export const ButtonGetToast = styled.button`
         opacity: ${theme.opacity[6]};
     }
 `
+export const ButtonStory = styled.button`
+    width: ${theme.width[4]}px;
+    height: ${theme.height[4]}px;
+    color: ${theme.colors.textColor};
+    font-size: ${theme.fontSize[2]}rem;
+    margin: ${theme.spaces[5]}px ${theme.spaces[9]}px;
+    border-radius: ${theme.spaces[8]}px;
+    opacity: ${theme.opacity[10]};
+    border: ${theme.spaces[3]}px;
+    outline: ${theme.spaces[3]}px;
+    background: ${theme.colors.applicationBg};
+    font-weight: bold;
+    cursor: pointer;
+
+    &: hover{   
+        opacity: ${theme.opacity[6]};
+    }
+`

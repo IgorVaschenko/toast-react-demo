@@ -6,8 +6,8 @@ import {
   toast_from_bottom,
   toast_in_left,
 } from "@/theme/keyFrames";
-import closeIcon from '@/assets/cancel.svg'
 import theme from "@/theme/theme";
+
 
 export const SingleToaster = styled.div`
 height: ${theme.height[4]}px;
@@ -71,18 +71,15 @@ text-align: left;
 pointer-events: none;
 `;
 
-export const ButtonToast = styled.button`
+export const ButtonCloseToast = styled.button`
 height: ${theme.height[4]}px;
 width: ${theme.width[1]}px;
 background-color:${({ backgroundColor }) => backgroundColor };
-background-image: url(${closeIcon});
-font-size: ${theme.fontSize[2]}rem;
 float: right;
 cursor:pointer;
 border:none;
 outline:none;
 background-size: 100%;
-z-index: 100;
 
 &:hover {
   opacity: ${theme.opacity[4]};

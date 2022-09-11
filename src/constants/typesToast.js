@@ -1,8 +1,8 @@
-import theme from "@/theme/theme";
 import errorIcon from "@/assets/error.svg";
 import infoIcon from "@/assets/info.svg";
 import warningIcon from "@/assets/warning.svg";
 import succsessIcon from "@/assets/success.svg";
+import theme from "@/theme/theme";
 
 export const SUCCESS = {
     type: 'success',

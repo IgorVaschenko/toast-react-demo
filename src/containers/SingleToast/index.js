@@ -1,13 +1,15 @@
 import React from 'react'
 
+import closeIcon from '@/assets/cancel.svg'
 import toast from '@/containers/ToastCore/ToastClass';
+
 import {
     SingleToaster,
     ImageToastDiv,
     Image,
     TitleToast,
     DescrToast,
-    ButtonToast,
+    ButtonCloseToast,
 } from '@/containers/SingleToast/components';
 
 const SingleToast = (props) => {
@@ -38,11 +40,17 @@ const SingleToast = (props) => {
             onDragEnd={dragToasts}
             draggable
         >
-            <ButtonToast
+            <ButtonCloseToast
                 id={id}
                 onClick={deleteToasts}
                 backgroundColor={backgroundColor}
-            />
+            >
+                <Image
+                    src={closeIcon}
+                    alt={title}
+                    draggable={false}
+                />
+            </ButtonCloseToast>
             <ImageToastDiv>
                 <Image
                     src={icon}
