@@ -7,6 +7,7 @@ import alias from '@rollup/plugin-alias';
 import path from 'path';
 import image from '@rollup/plugin-image';
 import external from 'rollup-plugin-peer-deps-external';
+import html from '@rollup/plugin-html';
 
 import react from 'react';
 import reactDom from 'react-dom';
@@ -17,11 +18,7 @@ const env = process.env.NODE_ENV;
 
 export default {
     input: 'src/index.js',
-    output: [
-        {
-            format: 'iife',
-        }
-    ],
+    output: [{format: 'iife',}],
     plugins: [
         resolve({
             browser: true,
@@ -35,6 +32,7 @@ export default {
                 'react-is': Object.keys(ReactIs),
             }
         }),
+        html(),
         alias(
             {
                 resolve: ['*', '.js', '.jsx'],
