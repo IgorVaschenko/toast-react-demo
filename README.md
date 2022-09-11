@@ -57,5 +57,5 @@ Here's a list of Properties:
 * Ability to "swipe" notifications to the side for quick dismissal
 * Show up to 3 notifications at the same time
 
-[demo]: https://631c71a69907ec2db981ba03--profound-fox-7637de.netlify.app/
+[demo]: https://cozy-monstera-720ad4.netlify.app/
 
