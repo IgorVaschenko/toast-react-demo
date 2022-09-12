@@ -19,7 +19,7 @@ export const Application = styled.div`
     }
 `
 export const Select = styled.div`
-    width: ${theme.width[6]}px;
+    width: ${theme.width[9]}px;
     display: flex;
     flex-direction: column;
 `
@@ -28,7 +28,7 @@ export const Icons = styled.div`
     justify-content: space-around;
 `
 export const RadioWrapper = styled.div`
-    width: ${theme.width[4]}px;
+    width: ${theme.width[7]}px;
     display: flex;
     justify-content: space-around;
 `
@@ -39,7 +39,7 @@ export const ToastButtons = styled.div`
     display: flex;
 `
 export const WrapperForColor = styled.div`
-    width: ${theme.width[6]}px;
+    width: ${theme.width[9]}px;
     display: flex;
     justify-content: space-between;
 `

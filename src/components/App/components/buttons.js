@@ -3,7 +3,7 @@ import styled from "styled-components";
 import theme from "@/theme/theme";
 
 export const ButtonCustom = styled.button`
-    width: ${theme.width[8]}px;
+    width: ${theme.width[3]}px;
     height: ${theme.height[5]}px;
     color: ${theme.colors.textColor};
     font-size: ${theme.fontSize[1]}rem;
@@ -21,7 +21,7 @@ export const ButtonCustom = styled.button`
     }
 `
 export const ButtonGetToast = styled.button`
-    width: ${theme.width[4]}px;
+    width: ${theme.width[7]}px;
     height: ${theme.height[4]}px;
     color: ${theme.colors.textColorDark};
     font-size: ${theme.fontSize[1]}rem;
@@ -38,7 +38,7 @@ export const ButtonGetToast = styled.button`
     }
 `
 export const ButtonStory = styled.button`
-    width: ${theme.width[4]}px;
+    width: ${theme.width[7]}px;
     height: ${theme.height[4]}px;
     color: ${theme.colors.textColor};
     font-size: ${theme.fontSize[2]}rem;

@@ -13,6 +13,7 @@ export default createGlobalStyle`
     width: 100%;
     height: 100%;
     background-color: ${theme.colors.applicationBg};
+    overflow-y: hidden;
   }
 
   body {
@@ -21,5 +22,4 @@ export default createGlobalStyle`
       height: 100%;
     }
   }
-
 `

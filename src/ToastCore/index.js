@@ -7,7 +7,13 @@ import {
     SUCCESS,
     WARNING,
 } from '@/constants';
-import { toastTypeProps, getGeneralProps, renderToast, getToast } from '@/helpers';
+import {
+    toastTypeProps,
+    getGeneralProps,
+    renderToast,
+    getToast,
+    getContainer
+} from '@/helpers';
 
 class ToastClass {
 
@@ -17,13 +23,12 @@ class ToastClass {
         }
         ToastClass.instance = this;
         this.toasts = [];
-        this.timers = [];
-        this.toastsWithRemove = []
         this.error = { ...ERROR };
         this.info = { ...INFO };
         this.success = { ...SUCCESS };
         this.warning = { ...WARNING };
         this.deleteToast = this.deleteToast.bind(this)
+        this.addToast = this.addToast.bind(this)
     }
 
     getToastProps(args) {
@@ -35,7 +40,7 @@ class ToastClass {
                     ...getGeneralProps(args),
                 }];
         } else {
-            this.toasts = [...this.toasts.splice(1), {
+            return this.toasts = [...this.toasts.splice(1), {
                 id: args.id,
                 ...toastTypeProps(args),
                 ...getGeneralProps(args),
@@ -49,30 +54,30 @@ class ToastClass {
     }
 
     addToast(args) {
-
-        let timer = [];
-        const id = uuidv4()
-
-        this.toasts = this.toasts.map(toast => ({ ...toast, animation: '' }))
-        this.getToastProps({ ...args, id })
-        renderToast(getToast(this.toasts), document.getElementById('ContainerToasts'))
+        let autoDelTimer = null;
+        const id = uuidv4();
 
         if (args.autoDelete) {
-            timer[id] = setTimeout(() => {
-                this.deleteToast(id, timer[id])
-                clearTimeout(timer[id])
+            autoDelTimer = setTimeout(() => {
+                this.deleteToast(id)
             }, args.autoDeleteTime);
-
-            this.timers.push(timer[id])
-            this.toastsWithRemove.push(id)
         }
+
+        this.toasts = this.toasts.map(toast => ({ ...toast, animation: '' }))
+        this.getToastProps({ ...args, id, autoDelTimer })
+        renderToast(getToast(this.toasts), getContainer())
     }
 
-    deleteToast(id) {
-        id = event ? event.target.id : id
-        if (event) clearTimeout(this.timers[this.toastsWithRemove.findIndex(timer => timer === id)])
+    deleteToast(id, fromClickDelete) {
+
+        this.toasts = this.toasts.map(toast => ({ ...toast, animation: '' }))
+
+        if (fromClickDelete && this.toasts[this.toasts.findIndex(toast => toast.id === id)].autoDelTimer !== undefined) {
+            clearTimeout(this.toasts[this.toasts.findIndex(toast => toast.id === id)].autoDelTimer)
+        }
+
         this.toasts.splice(this.toasts.findIndex(toast => toast.id === id), 1);
-        renderToast(getToast(this.toasts), document.getElementById('ContainerToasts'))
+        renderToast(getToast(this.toasts), getContainer())
     }
 }
 

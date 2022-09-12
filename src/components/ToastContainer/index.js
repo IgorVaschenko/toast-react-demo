@@ -7,7 +7,7 @@ import Portal from '@/components/Portal/Portal';
 import {
   ToastWrapper,
   ContainerToasts,
-} from "@/components/Toast/components";
+} from "@/components/ToastContainer/components";
 
 const ToastContainer = ({ position, PortalInsertionPointId }) => {
   return (

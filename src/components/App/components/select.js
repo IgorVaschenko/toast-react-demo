@@ -3,7 +3,7 @@ import styled from "styled-components";
 import theme from "@/theme/theme";
 
 export const SelectItem = styled.select`
-    width: ${theme.width[4]}px;
+    width: ${theme.width[7]}px;
     height: ${theme.height[4]}px;
     background-color: ${theme.colors.applicationBg};
     margin: ${theme.spaces[7]}px;

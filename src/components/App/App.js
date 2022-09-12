@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import ToastContainer from '@/components/Toast/ToastContainer';
-import toast from '@/containers/ToastCore/ToastClass';
+import ToastContainer from '@/components/ToastContainer';
+import toast from '@/ToastCore';
 import { ANIMATIONS, BUTTON_PROPS, POSITIONS } from '@/constants';
 import {
   Application,
@@ -101,11 +101,11 @@ export function App(storyProps) {
     <>
       {Object.keys(storyProps).length ?
         <>
-            <ButtonStory onClick={getStoryToast}>Get Toast</ButtonStory>
-            <ToastContainer
-              position={storyProps.position}
-              PortalInsertionPointId={storyProps.PortalInsertionPointId}
-            />
+          <ButtonStory onClick={getStoryToast}>Get Toast</ButtonStory>
+          <ToastContainer
+            position={storyProps.position}
+            PortalInsertionPointId={storyProps.PortalInsertionPointId}
+          />
         </>
         :
         <>
@@ -190,7 +190,7 @@ export function App(storyProps) {
               <Input
                 type="number"
                 name="autoDeleteTime"
-                placeholder="Autodelete time default, ms"
+                placeholder="Autodelete time, ms"
                 value={toastProps.autoDeleteTime}
                 onChange={handleChange}
               />

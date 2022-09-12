@@ -12,7 +12,7 @@ export const Input = styled.input`
     cursor: pointer;
 `
 export const InputColor = styled.input`
-    width: ${theme.width[4]}px;
+    width: ${theme.width[7]}px;
     margin: ${theme.spaces[7]}px;
     border-radius: ${theme.spaces[7]}px;
     margin-right:  ${theme.spaces[13]}px;
@@ -20,7 +20,7 @@ export const InputColor = styled.input`
     cursor: pointer;
 `
 export const CheckInput = styled.input`
-    width: ${theme.width[9]}px;
+    width: ${theme.width[1]}px;
     height: ${theme.height[3]}px;
     margin-left: ${theme.spaces[9]}px;
     filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);

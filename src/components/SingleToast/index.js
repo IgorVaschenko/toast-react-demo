@@ -1,7 +1,7 @@
 import React from 'react'
 
+import toast from '@/ToastCore';
 import closeIcon from '@/assets/cancel.svg'
-import toast from '@/containers/ToastCore/ToastClass';
 
 import {
     SingleToaster,
@@ -10,7 +10,7 @@ import {
     TitleToast,
     DescrToast,
     ButtonCloseToast,
-} from '@/containers/SingleToast/components';
+} from '@/components/SingleToast/components';
 
 const SingleToast = (props) => {
     const {
@@ -26,8 +26,9 @@ const SingleToast = (props) => {
         descriptionColor,
         description } = props
 
-    const deleteToasts = () => toast.deleteToast();
-    const dragToasts = () => toast.deleteToast();
+    const deleteToasts = (event) => toast.deleteToast(event.target.id, true)
+
+    const dragToasts = (event) => toast.deleteToast(event.target.id, true);
 
     return (
         <SingleToaster
