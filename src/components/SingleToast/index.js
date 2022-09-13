@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import toast from '@/ToastCore';
 import closeIcon from '@/assets/cancel.svg'
@@ -26,9 +27,9 @@ const SingleToast = (props) => {
         descriptionColor,
         description } = props
 
-    const deleteToasts = (event) => toast.deleteToast(event.target.id, true)
+    const deleteToasts = (event) => toast.deleteToast(event.target.id)
 
-    const dragToasts = (event) => toast.deleteToast(event.target.id, true);
+    const dragToasts = (event) => toast.deleteToast(event.target.id);
 
     return (
         <SingleToaster
@@ -75,3 +76,7 @@ const SingleToast = (props) => {
 }
 
 export default SingleToast;
+
+SingleToast.propTypes = {
+    props: PropTypes.object,
+};

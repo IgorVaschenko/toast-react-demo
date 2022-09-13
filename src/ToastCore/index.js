@@ -68,11 +68,11 @@ class ToastClass {
         renderToast(getToast(this.toasts), getContainer())
     }
 
-    deleteToast(id, fromClickDelete) {
+    deleteToast(id) {
 
         this.toasts = this.toasts.map(toast => ({ ...toast, animation: '' }))
 
-        if (fromClickDelete && this.toasts[this.toasts.findIndex(toast => toast.id === id)].autoDelTimer !== undefined) {
+        if (this.toasts[this.toasts.findIndex(toast => toast.id === id)].autoDelTimer !== undefined) {
             clearTimeout(this.toasts[this.toasts.findIndex(toast => toast.id === id)].autoDelTimer)
         }
 

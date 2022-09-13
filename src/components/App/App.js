@@ -25,17 +25,10 @@ import {
   TitleIco,
   AutoLabel,
   OptionsLabel,
-  ButtonStory
 } from '@/components/App/components'
 import GlobalStyles from '@/theme/globalStyles';
 
-export function App(storyProps) {
-
-  const getStoryToast = () => {
-    toast.addToast({
-      ...storyProps
-    })
-  }
+export function App() {
 
   const [toastProps, setToastProps] = useState({
     type: '',
@@ -74,21 +67,21 @@ export function App(storyProps) {
     })
   }
 
-  const handleChange = () => {
-    event.target.name === 'type' && setToastProps({ ...toastProps, type: event.target.value })
-    event.target.name === 'autoDelete' && setToastProps({ ...toastProps, autoDelete: !toastProps.autoDelete })
-    event.target.name === 'autoDelete' && toast.toasts.map(toast => ({ ...toast, autoDelete: toastProps.autoDelete }))
-    event.target.name === 'autoDeleteTime' && setToastProps({ ...toastProps, autoDeleteTime: event.target.value })
-    event.target.name === 'title' && setToastProps({ ...toastProps, title: event.target.value })
-    event.target.name === 'description' && setToastProps({ ...toastProps, description: event.target.value })
-    event.target.name === 'padding' && setToastProps({ ...toastProps, padding: event.target.value })
-    event.target.name === 'PortalInsertionPointId' && setToastProps({ ...toastProps, PortalInsertionPointId: event.target.value })
-    event.target.name === 'position' && setToastProps({ ...toastProps, position: event.target.value })
-    event.target.name === 'position' && toast.toasts.map(toast => ({ ...toast, position: toastProps.position }))
-    event.target.name === 'animation' && setToastProps({ ...toastProps, animation: event.target.value })
-    event.target.name === 'titleColor' && setToastProps({ ...toastProps, titleColor: event.target.value })
-    event.target.name === 'descriptionColor' && setToastProps({ ...toastProps, descriptionColor: event.target.value })
-    event.target.name === 'backgroundColor' && setToastProps({ ...toastProps, backgroundColor: event.target.value })
+  const handleChange = (e) => {
+    e.target.name === 'type' && setToastProps({ ...toastProps, type: e.target.value })
+    e.target.name === 'autoDelete' && setToastProps({ ...toastProps, autoDelete: !toastProps.autoDelete })
+    e.target.name === 'autoDelete' && toast.toasts.map(toast => ({ ...toast, autoDelete: toastProps.autoDelete }))
+    e.target.name === 'autoDeleteTime' && setToastProps({ ...toastProps, autoDeleteTime: e.target.value })
+    e.target.name === 'title' && setToastProps({ ...toastProps, title: e.target.value })
+    e.target.name === 'description' && setToastProps({ ...toastProps, description: e.target.value })
+    e.target.name === 'padding' && setToastProps({ ...toastProps, padding: e.target.value })
+    e.target.name === 'PortalInsertionPointId' && setToastProps({ ...toastProps, PortalInsertionPointId: e.target.value })
+    e.target.name === 'position' && setToastProps({ ...toastProps, position: e.target.value })
+    e.target.name === 'position' && toast.toasts.map(toast => ({ ...toast, position: toastProps.position }))
+    e.target.name === 'animation' && setToastProps({ ...toastProps, animation: e.target.value })
+    e.target.name === 'titleColor' && setToastProps({ ...toastProps, titleColor: e.target.value })
+    e.target.name === 'descriptionColor' && setToastProps({ ...toastProps, descriptionColor: e.target.value })
+    e.target.name === 'backgroundColor' && setToastProps({ ...toastProps, backgroundColor: e.target.value })
   }
 
   const GetToast = () => {
@@ -99,196 +92,184 @@ export function App(storyProps) {
 
   return (
     <>
-      {Object.keys(storyProps).length ?
-        <>
-          <ButtonStory onClick={getStoryToast}>Get Toast</ButtonStory>
-          <ToastContainer
-            position={storyProps.position}
-            PortalInsertionPointId={storyProps.PortalInsertionPointId}
+      <Application>
+        <p>React Toast Component</p>
+        <ToastButtons >
+          {
+            BUTTON_PROPS.map(button =>
+              <ButtonCustom
+                key={button.id}
+                bgcolor={button.backgroundColor}
+                onClick={() => showToast(button.type)}
+              >
+                {button.label}
+              </ButtonCustom>
+            )
+          }
+        </ToastButtons>
+        <Select>
+          <AutoLabel>
+            Auto Delete
+            <CheckInput
+              type="checkbox"
+              name='autoDelete'
+              checked={toastProps.autoDelete}
+              onChange={handleChange}
+            />
+          </AutoLabel>
+          <Icons>
+            <TitleIco>Choose type ( necessarily! )</TitleIco>
+            <RadioWrapper>
+              <SingleIcon>
+                <LabelIco>
+                  <Input
+                    type="radio"
+                    name="type"
+                    value='success'
+                    checked={'success' === toastProps.type}
+                    onChange={handleChange}
+                  />
+                  success
+                </LabelIco>
+              </SingleIcon>
+              <SingleIcon>
+                <LabelIco>
+                  <Input
+                    type="radio"
+                    name="type"
+                    value='error'
+                    checked={'error' === toastProps.type}
+                    onChange={handleChange}
+                  />
+                  error
+                </LabelIco>
+              </SingleIcon>
+              <SingleIcon>
+                <LabelIco>
+                  <Input
+                    type="radio"
+                    value='info'
+                    name="type"
+                    checked={'info' === toastProps.type}
+                    onChange={handleChange}
+                  />
+                  info
+                </LabelIco>
+              </SingleIcon>
+              <SingleIcon>
+                <LabelIco>
+                  <Input
+                    type="radio"
+                    value='warning'
+                    name="type"
+                    checked={'warning' === toastProps.type}
+                    onChange={handleChange}
+                  />
+                  warning
+                </LabelIco>
+              </SingleIcon>
+            </RadioWrapper>
+          </Icons>
+          <Input
+            type="number"
+            name="autoDeleteTime"
+            placeholder="Autodelete time, ms"
+            value={toastProps.autoDeleteTime}
+            onChange={handleChange}
           />
-        </>
-        :
-        <>
-          <Application>
-            <p>React Toast Component</p>
-            <ToastButtons >
-              {
-                BUTTON_PROPS.map(button =>
-                  <ButtonCustom
-                    key={button.id}
-                    bgcolor={button.backgroundColor}
-                    onClick={() => showToast(button.type)}
-                  >
-                    {button.label}
-                  </ButtonCustom>
-                )
-              }
-            </ToastButtons>
-            <Select>
-              <AutoLabel>
-                Auto Delete
-                <CheckInput
-                  type="checkbox"
-                  name='autoDelete'
-                  checked={toastProps.autoDelete}
-                  onChange={handleChange}
-                />
-              </AutoLabel>
-              <Icons>
-                <TitleIco>Choose type ( necessarily! )</TitleIco>
-                <RadioWrapper>
-                  <SingleIcon>
-                    <LabelIco>
-                      <Input
-                        type="radio"
-                        name="type"
-                        value='success'
-                        checked={'success' === toastProps.type}
-                        onChange={handleChange}
-                      />
-                      success
-                    </LabelIco>
-                  </SingleIcon>
-                  <SingleIcon>
-                    <LabelIco>
-                      <Input
-                        type="radio"
-                        name="type"
-                        value='error'
-                        checked={'error' === toastProps.type}
-                        onChange={handleChange}
-                      />
-                      error
-                    </LabelIco>
-                  </SingleIcon>
-                  <SingleIcon>
-                    <LabelIco>
-                      <Input
-                        type="radio"
-                        value='info'
-                        name="type"
-                        checked={'info' === toastProps.type}
-                        onChange={handleChange}
-                      />
-                      info
-                    </LabelIco>
-                  </SingleIcon>
-                  <SingleIcon>
-                    <LabelIco>
-                      <Input
-                        type="radio"
-                        value='warning'
-                        name="type"
-                        checked={'warning' === toastProps.type}
-                        onChange={handleChange}
-                      />
-                      warning
-                    </LabelIco>
-                  </SingleIcon>
-                </RadioWrapper>
-              </Icons>
-              <Input
-                type="number"
-                name="autoDeleteTime"
-                placeholder="Autodelete time, ms"
-                value={toastProps.autoDeleteTime}
-                onChange={handleChange}
-              />
-              <Input
-                type="text"
-                name="title"
-                placeholder="Title"
-                autoComplete="false"
-                value={toastProps.title}
-                onChange={handleChange}
-              />
-              <Input
-                type="text"
-                name="description"
-                placeholder="Description"
-                value={toastProps.description}
-                onChange={handleChange}
-              />
-              <Input
-                type="text"
-                name="padding"
-                placeholder="Padding default: 20px"
-                value={toastProps.padding}
-                onChange={handleChange}
-              />
-              <Input
-                type="text"
-                name="PortalInsertionPointId"
-                placeholder="Portal container default: document.body"
-                value={toastProps.PortalInsertionPointId}
-                onChange={handleChange}
-              />
-              <WrapperForColor>
-                <OptionsLabel>Select Position</OptionsLabel>
-                <SelectItem
-                  name="position"
-                  value={toastProps.position}
-                  onChange={handleChange}
-                >
-                  {POSITIONS.map(position => (
-                    <SelectOption key={uuidv4()} value={position.title}>{position.description}</SelectOption>
-                  ))}
-                </SelectItem>
-              </WrapperForColor>
-              <WrapperForColor>
-                <OptionsLabel>Select Animation</OptionsLabel>
-                <SelectItem
-                  name="animation"
-                  value={toastProps.animation}
-                  onChange={handleChange}
-                >
-                  <SelectOption>Select Animation</SelectOption>
-                  {ANIMATIONS.map(position => (
-                    <SelectOption key={uuidv4()} value={position.title}>{position.description}</SelectOption>
-                  ))}
-                </SelectItem>
-              </WrapperForColor>
-            </Select>
-            <WrapperForColor>
-              <Label>Choose Title Color</Label>
-              <InputColor
-                type="color"
-                name="titleColor"
-                value={toastProps.titleColor}
-                onChange={handleChange}
-              />
-            </WrapperForColor>
-            <WrapperForColor>
-              <Label>Choose Description Color</Label>
-              <InputColor
-                type="color"
-                name="descriptionColor"
-                value={toastProps.descriptionColor}
-                onChange={handleChange}
-              />
-            </WrapperForColor>
-            <WrapperForColor>
-              <Label>Choose Background</Label>
-              <InputColor
-                type="color"
-                name="backgroundColor"
-                value={toastProps.backgroundColor}
-                onChange={handleChange}
-              />
-            </WrapperForColor>
-            <ButtonGetToast
-              disabled={toastProps.type ? false : true}
-              onClick={GetToast}>
-              Get Toast
-            </ButtonGetToast>
-          </Application>
-          <ToastContainer
-            position={toastProps.position}
-            PortalInsertionPointId={toastProps.PortalInsertionPointId}
+          <Input
+            type="text"
+            name="title"
+            placeholder="Title"
+            autoComplete="false"
+            value={toastProps.title}
+            onChange={handleChange}
           />
-          <GlobalStyles />
-        </>
-      }
+          <Input
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={toastProps.description}
+            onChange={handleChange}
+          />
+          <Input
+            type="text"
+            name="padding"
+            placeholder="Padding default: 20px"
+            value={toastProps.padding}
+            onChange={handleChange}
+          />
+          <Input
+            type="text"
+            name="PortalInsertionPointId"
+            placeholder="Portal container default: document.body"
+            value={toastProps.PortalInsertionPointId}
+            onChange={handleChange}
+          />
+          <WrapperForColor>
+            <OptionsLabel>Select Position</OptionsLabel>
+            <SelectItem
+              name="position"
+              value={toastProps.position}
+              onChange={handleChange}
+            >
+              {POSITIONS.map(position => (
+                <SelectOption key={uuidv4()} value={position.title}>{position.description}</SelectOption>
+              ))}
+            </SelectItem>
+          </WrapperForColor>
+          <WrapperForColor>
+            <OptionsLabel>Select Animation</OptionsLabel>
+            <SelectItem
+              name="animation"
+              value={toastProps.animation}
+              onChange={handleChange}
+            >
+              <SelectOption>Select Animation</SelectOption>
+              {ANIMATIONS.map(position => (
+                <SelectOption key={uuidv4()} value={position.title}>{position.description}</SelectOption>
+              ))}
+            </SelectItem>
+          </WrapperForColor>
+        </Select>
+        <WrapperForColor>
+          <Label>Choose Title Color</Label>
+          <InputColor
+            type="color"
+            name="titleColor"
+            value={toastProps.titleColor}
+            onChange={handleChange}
+          />
+        </WrapperForColor>
+        <WrapperForColor>
+          <Label>Choose Description Color</Label>
+          <InputColor
+            type="color"
+            name="descriptionColor"
+            value={toastProps.descriptionColor}
+            onChange={handleChange}
+          />
+        </WrapperForColor>
+        <WrapperForColor>
+          <Label>Choose Background</Label>
+          <InputColor
+            type="color"
+            name="backgroundColor"
+            value={toastProps.backgroundColor}
+            onChange={handleChange}
+          />
+        </WrapperForColor>
+        <ButtonGetToast
+          disabled={toastProps.type ? false : true}
+          onClick={GetToast}>
+          Get Toast
+        </ButtonGetToast>
+      </Application>
+      <ToastContainer
+        position={toastProps.position}
+        PortalInsertionPointId={toastProps.PortalInsertionPointId}
+      />
+      <GlobalStyles />
     </>
   )
 }
